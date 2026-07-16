@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>Send Guard Settings</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <h1 data-i18n="popupTitle">送信ロック 設定</h1>
+  <p class="sub" data-i18n="popupSubtitle">うっかり送信を防ぐための拡張機能</p>
+
+  <div class="row">
+    <div class="row-text">
+      <div class="row-title" data-i18n="funRowTitle">お楽しみ機能</div>
+      <div class="row-desc" data-i18n="funRowDesc">送信後に一言コメントを表示します</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="funToggle" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="hint">
+    <div data-i18n="hintUnlock">ロック解除: 🔒アイコンをクリック / Ctrl+Shift+U</div>
+    <div data-i18n="hintCancel">キャンセル: Escキー</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* core/lock-ui.css
+   ロック状態バッジと、お楽しみ機能のトースト通知の見た目。
+   派手にしすぎず、常時表示されても邪魔にならないことを優先。
+*/
+
+.sg-badge {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #f1efe9;
+  border: 1px solid #d9d5c7;
+  color: #514f47;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif;
+  font-size: 12.5px;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.sg-badge:hover {
+  filter: brightness(0.97);
+}
+
+.sg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9a9686;
+  transition: background 0.2s ease;
+  flex: none;
+}
+
+.sg-badge.sg-unlocked {
+  background: #e3f2ec;
+  border-color: #9ed3bd;
+  color: #1f6c50;
+}
+
+.sg-badge.sg-unlocked .sg-dot {
+  background: #24a677;
+}
+
+.sg-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 58px;
+  z-index: 2147483000;
+  padding: 7px 13px;
+  border-radius: 9px;
+  background: #33322d;
+  color: #f1efe9;
+  font-size: 12.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.sg-toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
