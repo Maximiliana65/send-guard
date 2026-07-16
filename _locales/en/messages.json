@@ -1,0 +1,13 @@
+{
+  "appName": { "message": "Send Guard - Accidental Send Prevention" },
+  "appDescription": { "message": "Prevents accidental sends from a stray Enter key or button click" },
+  "badgeLocked": { "message": "Locked" },
+  "badgeUnlocked": { "message": "Ready to send" },
+  "badgeTooltip": { "message": "Click to allow one send (or press Ctrl+Shift+U)" },
+  "popupTitle": { "message": "Send Guard Settings" },
+  "popupSubtitle": { "message": "Prevents accidental sends" },
+  "funRowTitle": { "message": "Fun reactions" },
+  "funRowDesc": { "message": "Show a short comment after each send" },
+  "hintUnlock": { "message": "Unlock: click the 🔒 icon / Ctrl+Shift+U" },
+  "hintCancel": { "message": "Cancel: Esc key" }
+}

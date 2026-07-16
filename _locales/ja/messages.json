@@ -1,0 +1,13 @@
+{
+  "appName": { "message": "送信ロック - AI誤送信防止" },
+  "appDescription": { "message": "うっかりEnterや送信ボタンでの誤送信を防ぐための拡張機能" },
+  "badgeLocked": { "message": "ロック中" },
+  "badgeUnlocked": { "message": "送信OK" },
+  "badgeTooltip": { "message": "クリックで次の1回だけ送信できます（Ctrl+Shift+Uでも解除可）" },
+  "popupTitle": { "message": "送信ロック 設定" },
+  "popupSubtitle": { "message": "うっかり送信を防ぐための拡張機能" },
+  "funRowTitle": { "message": "お楽しみ機能" },
+  "funRowDesc": { "message": "送信後に一言コメントを表示します" },
+  "hintUnlock": { "message": "ロック解除: 🔒アイコンをクリック / Ctrl+Shift+U" },
+  "hintCancel": { "message": "キャンセル: Escキー" }
+}
