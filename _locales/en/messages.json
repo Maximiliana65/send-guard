@@ -9,5 +9,6 @@
   "funRowTitle": { "message": "Fun reactions" },
   "funRowDesc": { "message": "Show a short comment after each send" },
   "hintUnlock": { "message": "Unlock: click the 🔒 icon / Ctrl+Shift+U" },
-  "hintCancel": { "message": "Cancel: Esc key" }
+  "hintCancel": { "message": "Cancel: Esc key" },
+  "hintPin": { "message": "💡 Pin this extension to your toolbar for one-click access" }
 }

@@ -9,5 +9,6 @@
   "funRowTitle": { "message": "お楽しみ機能" },
   "funRowDesc": { "message": "送信後に一言コメントを表示します" },
   "hintUnlock": { "message": "ロック解除: 🔒アイコンをクリック / Ctrl+Shift+U" },
-  "hintCancel": { "message": "キャンセル: Escキー" }
+  "hintCancel": { "message": "キャンセル: Escキー" },
+  "hintPin": { "message": "💡 ツールバーにピン留めすると、次からワンクリックで開けます" }
 }

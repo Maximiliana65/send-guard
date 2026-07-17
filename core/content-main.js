@@ -38,7 +38,12 @@
     document.body.appendChild(el);
 
     el.addEventListener('click', () => {
-      lockGuard.unlockOnce();
+      // クリックのたびにロック⇔解除を切り替える(オン/オフの分かりやすいトグル)
+      if (lockGuard.isUnlocked()) {
+        lockGuard.cancel();
+      } else {
+        lockGuard.unlockOnce();
+      }
     });
 
     badgeEl = el;
