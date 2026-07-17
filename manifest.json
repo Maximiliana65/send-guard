@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_appName__",
   "description": "__MSG_appDescription__",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "default_locale": "ja",
 
   "permissions": ["storage"],
@@ -26,7 +26,7 @@
         "core/content-main.js"
       ],
       "css": ["core/lock-ui.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     },
     {
       "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
@@ -40,7 +40,7 @@
         "core/content-main.js"
       ],
       "css": ["core/lock-ui.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     },
     {
       "matches": ["https://gemini.google.com/*"],
@@ -54,7 +54,7 @@
         "core/content-main.js"
       ],
       "css": ["core/lock-ui.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ],
 

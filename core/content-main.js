@@ -4,8 +4,12 @@
 // 全体の司令塔となるファイル。
 //
 // 設計方針:
-//   - document に対して capture フェーズでイベントを監視することで、
+//   - window に対して capture フェーズでイベントを監視することで、
 //     サイト側の処理(送信・再試行)より先に横取りする
+//     (window は document よりさらに外側なので、サイト側がdocumentに
+//      同じ仕組みを持っていても、必ずこちらが先に検知できる)
+//   - manifest.json 側で run_at を "document_start" にし、サイト自身の
+//     JavaScriptが動き出すより前に、この監視を開始しておく
 //   - ロック中は preventDefault + stopImmediatePropagation で送信を止める
 //   - 解除中は何もせずイベントをそのまま通し、直後に自動で再ロックする
 
@@ -23,6 +27,7 @@
   }
 
   function createBadge() {
+    if (badgeEl) return; // 二重生成を防ぐ
     const el = document.createElement('div');
     el.className = 'sg-badge';
     el.title = msg('badgeTooltip');
@@ -52,6 +57,16 @@
     updateBadge(lockGuard.isUnlocked());
   }
 
+  // document_start の時点では <body> がまだ存在しないことがあるため、
+  // 存在すればすぐ、なければ準備できてから バッジを作る
+  function ensureBadge() {
+    if (document.body) {
+      createBadge();
+    } else {
+      document.addEventListener('DOMContentLoaded', createBadge, { once: true });
+    }
+  }
+
   function updateBadge(unlocked) {
     if (!badgeEl) return;
     badgeEl.classList.toggle('sg-unlocked', unlocked);
@@ -69,7 +84,9 @@
   lockGuard.onChange(updateBadge);
 
   // --- キー入力の監視 ---
-  document.addEventListener(
+  // window に付けることで、サイト側がdocumentレベルで同様の仕組みを
+  // 持っていても、必ずこちらの判定が先に働く
+  window.addEventListener(
     'keydown',
     (event) => {
       // ショートカットでロック解除 (Ctrl+Shift+U)
@@ -108,7 +125,7 @@
   );
 
   // --- クリックの監視(送信ボタン・再試行ボタン) ---
-  document.addEventListener(
+  window.addEventListener(
     'click',
     (event) => {
       const isSend = adapter.isSendButton(event.target);
@@ -127,5 +144,5 @@
     true
   );
 
-  createBadge();
+  ensureBadge();
 })();

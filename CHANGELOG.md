@@ -9,6 +9,15 @@
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-07-18
+### 修正
+- ChatGPTでEnterキーによる送信がブロックされない不具合を修正
+  - 原因: 拡張機能のコードがページ読み込み後半(`document_idle`)に動き始めていたため、
+    ChatGPT自身のEnterキー処理の方が先に働いてしまっていた
+  - 対処: `run_at`を`document_start`に変更し、監視対象も`document`から一段外側の`window`に変更。
+    サイト自身のJavaScriptが動き出すより前に、確実にこちらが先に検知できるようにした
+  - ユーザーによる実機調査(ChatGPTのDOM構造の特定)がきっかけで発見・修正
+
 ## [0.2.0] - 2026-07-18
 ### 追加
 - ChatGPT（`chatgpt.com` / `chat.openai.com`）対応アダプター（`adapters/chatgpt.js`）
