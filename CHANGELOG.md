@@ -1,15 +1,26 @@
 # CHANGELOG
 
-このプロジェクトの変更履歴です。形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) を参考にしています。
+このプロジェクトの変更履歴です。形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) を、
+バージョン番号の付け方は [セマンティックバージョニング](https://semver.org/lang/ja/)（`MAJOR.MINOR.PATCH`）を採用しています。
+
+- **MAJOR**: 今までの使い方が壊れるような大きな変更
+- **MINOR**: 後方互換性のある新機能の追加
+- **PATCH**: バグ修正や細かい調整のみ
 
 ## [Unreleased]
-### 変更
-- 🔒アイコンをクリックのたびにロック⇔解除が切り替わるトグル動作に変更
-- お楽しみコメントの背景色をバッジと同じ明るい配色に統一（ライトモードでの違和感を解消）
-- 設定画面に「ツールバーにピン留け」のヒントを追加
 
-### 確認済み
-- Claude.aiの実際の画面で動作確認済み（送信ロック・再試行ロック・お楽しみ機能とも正常動作）
+## [0.2.0] - 2026-07-18
+### 追加
+- ChatGPT（`chatgpt.com` / `chat.openai.com`）対応アダプター（`adapters/chatgpt.js`）
+- Gemini（`gemini.google.com`）対応アダプター（`adapters/gemini.js`）
+- アダプター間で共通利用するDOM判定ヘルパー（`core/dom-utils.js`）
+- `manifest.json` にChatGPT・Geminiの`host_permissions`／`content_scripts`を追加
+
+### 変更
+- `adapters/claude.js` を共通ヘルパー（`dom-utils.js`）を使う形に整理
+
+### 未検証
+- ChatGPT・Geminiの実際の画面での動作確認（セレクタの調整が必要になる可能性あり）
 
 ## [0.1.0] - 2026-07-16
 ### 追加
@@ -21,3 +32,11 @@
 - 設定画面（ポップアップ）でお楽しみ機能のON/OFF切り替え
 - 多言語対応の土台（`_locales/ja`, `_locales/en`）
 - 設計書（`docs/`）
+
+### 変更（実際に使ってみてのフィードバック反映、2026-07-17）
+- 🔒アイコンをクリックのたびにロック⇔解除が切り替わるトグル動作に変更
+- お楽しみコメントの背景色をバッジと同じ明るい配色に統一（ライトモードでの違和感を解消）
+- 設定画面に「ツールバーにピン留め」のヒントを追加
+
+### 確認済み
+- Claude.aiの実際の画面で動作確認済み（送信ロック・再試行ロック・お楽しみ機能とも正常動作）

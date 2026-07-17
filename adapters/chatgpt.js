@@ -1,9 +1,9 @@
-// adapters/claude.js
-// Claude.ai (https://claude.ai) 専用のアダプター。
+// adapters/chatgpt.js
+// ChatGPT (https://chatgpt.com) 専用のアダプター。
 //
-// 【重要】このファイルは「Claude.aiの画面のどこが入力欄で、どこが送信ボタンか」
-// だけを判定する担当です。ロックの仕組み自体(core/)には一切手を入れません。
 // 画面デザインが変わって動かなくなった場合は、下のセレクタ配列だけを調整してください。
+// 入力欄には id="prompt-textarea" の要素が使われることが多いですが、
+// 念のため一般的なcontenteditable/textareaの形も候補に含めています。
 
 window.SendGuard = window.SendGuard || {};
 
@@ -11,22 +11,23 @@ window.SendGuard = window.SendGuard || {};
   const { matchesAny } = window.SendGuard.domUtils;
 
   const COMPOSER_SELECTORS = [
+    '#prompt-textarea',
     'div[contenteditable="true"]',
-    '.ProseMirror[contenteditable="true"]',
+    'textarea',
     '[role="textbox"]'
   ];
 
   const SEND_SELECTORS = [
-    'button[aria-label*="Send message" i]',
-    'button[aria-label*="メッセージを送信" i]',
+    'button[data-testid="send-button"]',
+    'button[aria-label*="Send" i]',
     'button[aria-label*="送信" i]'
   ];
 
   const RETRY_SELECTORS = [
-    'button[aria-label*="Retry" i]',
-    'button[aria-label*="再試行" i]',
     'button[aria-label*="Regenerate" i]',
-    'button[aria-label*="再生成" i]'
+    'button[aria-label*="再生成" i]',
+    'button[aria-label*="Try again" i]',
+    'button[aria-label*="再試行" i]'
   ];
 
   window.SendGuard.adapter = {

@@ -11,9 +11,9 @@
 - [ ] **Claude.aiの実際の画面で動作確認・セレクタ調整**
 
 ## フェーズ2: 3サイト対応
-- [ ] `adapters/chatgpt.js` を追加
-- [ ] `adapters/gemini.js` を追加
-- [ ] `manifest.json` の対象サイトを追加
+- [x] `adapters/chatgpt.js` を追加
+- [x] `adapters/gemini.js` を追加
+- [x] `manifest.json` の対象サイトを追加
 - [ ] それぞれの画面で動作確認
 
 ## フェーズ3: お楽しみ機能を育てる

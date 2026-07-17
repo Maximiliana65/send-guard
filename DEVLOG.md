@@ -59,6 +59,26 @@ Claudeとこのプロジェクトを作っていく過程のメモです。
   実際にコードを検索して確認 → 現時点では全項目クリア
 - 外部通信なし、innerHTML未使用、権限は`storage`のみ、対象は`claude.ai`のみ
 
+---
+
+## 2026-07-18　フェーズ2実装とバージョン管理の導入
+
+### やったこと
+- ChatGPT・Gemini向けのアダプター(`adapters/chatgpt.js`, `adapters/gemini.js`)を追加
+- アダプター間で使い回せる共通ヘルパー(`core/dom-utils.js`)を新設し、Claude用アダプターもそちらに揃えた
+- 各サイトの入力欄・送信ボタンの想定セレクタは、Web検索で見つけた類似の公開スクリプト(Tampermonkey用)を
+  参考に、一般的なパターン(`contenteditable`、`aria-label`に"send"/"送信"を含むボタン等)を採用
+  （コードはそのまま流用せず、判定の考え方だけ参考にして自前で実装）
+- `manifest.json` にChatGPT(`chatgpt.com`/`chat.openai.com`)・Gemini(`gemini.google.com`)の
+  `host_permissions`と`content_scripts`を追加
+- セマンティックバージョニング(`MAJOR.MINOR.PATCH`)を導入。`manifest.json`のバージョンを
+  `0.1.0` → `0.2.0`に更新し、Gitタグ`v0.1.0`(フェーズ1完了時点)・`v0.2.0`(今回)を付与
+
+### 次回への申し送り
+- **ChatGPT・Geminiともに、まだ実際の画面での動作確認をしていない。** セレクタが合っているか要チェック
+- 動作確認の結果次第で、`adapters/chatgpt.js`・`adapters/gemini.js`のセレクタ調整が必要になる可能性が高い
+- 今後、区切りの良いタイミングでバージョンを上げてタグを打つ運用を続ける（判断はClaudeが提案する）
+
 ### ちょっとしたつまずき
 - フォルダ一括作成のコマンド(`mkdir -p .../{ja,en}`)がうまく展開されず、
   `_locales/ja` と `_locales/en` の中身(`messages.json`)が空のまま先に進んでしまっていた

@@ -1,9 +1,9 @@
-// adapters/claude.js
-// Claude.ai (https://claude.ai) 専用のアダプター。
+// adapters/gemini.js
+// Gemini (https://gemini.google.com) 専用のアダプター。
 //
-// 【重要】このファイルは「Claude.aiの画面のどこが入力欄で、どこが送信ボタンか」
-// だけを判定する担当です。ロックの仕組み自体(core/)には一切手を入れません。
 // 画面デザインが変わって動かなくなった場合は、下のセレクタ配列だけを調整してください。
+// Geminiの入力欄はリッチテキスト系のcontenteditableで実装されていることが多いため、
+// data-placeholder付きのcontenteditableも候補に含めています。
 
 window.SendGuard = window.SendGuard || {};
 
@@ -12,21 +12,22 @@ window.SendGuard = window.SendGuard || {};
 
   const COMPOSER_SELECTORS = [
     'div[contenteditable="true"]',
-    '.ProseMirror[contenteditable="true"]',
+    'div[data-placeholder][contenteditable="true"]',
+    'rich-textarea [contenteditable="true"]',
     '[role="textbox"]'
   ];
 
   const SEND_SELECTORS = [
-    'button[aria-label*="Send message" i]',
-    'button[aria-label*="メッセージを送信" i]',
-    'button[aria-label*="送信" i]'
+    'button[aria-label*="Send" i]',
+    'button[aria-label*="送信" i]',
+    'button[aria-label*="Submit" i]'
   ];
 
   const RETRY_SELECTORS = [
-    'button[aria-label*="Retry" i]',
-    'button[aria-label*="再試行" i]',
     'button[aria-label*="Regenerate" i]',
-    'button[aria-label*="再生成" i]'
+    'button[aria-label*="再生成" i]',
+    'button[aria-label*="Try again" i]',
+    'button[aria-label*="再試行" i]'
   ];
 
   window.SendGuard.adapter = {
