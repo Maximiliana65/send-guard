@@ -7,7 +7,7 @@ window.SendGuard = window.SendGuard || {};
 
 window.SendGuard.funEngine = {
   showRandomComment() {
-    const list = window.SendGuardComments || [];
+    const list = this._pickCommentsList();
     if (list.length === 0) return;
 
     // season が指定されているコメントは、その期間の外では候補から完全に除外する
@@ -23,6 +23,15 @@ window.SendGuard.funEngine = {
 
     const picked = pool[Math.floor(Math.random() * pool.length)];
     this._showToast(picked);
+  },
+
+  // ブラウザの表示言語(日本語かどうか)に応じて、日本語版/英語版のどちらの
+  // コメント一覧を使うか選ぶ。どちらか片方しか無い場合はそちらを使う。
+  _pickCommentsList() {
+    const sets = window.SendGuardComments || {};
+    const lang = (chrome.i18n.getUILanguage() || 'ja').toLowerCase();
+    const preferred = lang.startsWith('ja') ? sets.ja : sets.en;
+    return preferred || sets.ja || sets.en || [];
   },
 
   // 今日の日付が、コメントの season(期間指定)に当てはまるか判定する

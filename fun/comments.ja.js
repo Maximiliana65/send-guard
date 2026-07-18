@@ -1,24 +1,13 @@
-// fun/comments.js
+// fun/comments.ja.js
 //
-// ここは「お楽しみ機能」で表示される、一言コメントの一覧です。
-// プログラムの知識がなくても、この配列に追記・編集するだけで
-// 自分だけのコメントを増やせます。
-//
-// 書き方:
-//   { text: "表示したい言葉", emoji: "添える絵文字(省略可)" }
-//
-// オプション:
-//   rare: true         … 出現率がぐっと下がる(たまにしか出ない演出用)
-//   season: {from, to} … 指定した期間(月-日)の間だけ登場する「季節限定」コメント
-//                        例: { from: "12-20", to: "12-25" } → 12/20〜12/25だけ表示
-//                        年をまたぐ期間(年末年始など)も書けます
-//                        例: { from: "12-28", to: "01-03" }
-//
-// 例えばこんな行を増やすだけでOKです:
-//   { text: "よくやった!", emoji: "🎉" },
-//   { text: "メリークリスマス!", emoji: "🎄", season: { from: "12-24", to: "12-25" } },
+// 日本語版の一言コメント一覧です。書き方やseason(季節限定)の説明は
+// fun/comments.en.js、または元のコメント欄の説明を参照してください。
+// 表示する言語は fun/fun-engine.js が自動で切り替えます。
 
-window.SendGuardComments = [
+window.SendGuardComments = window.SendGuardComments || {};
+
+window.SendGuardComments.ja = [
+
   // ===== 通常 =====
   { text: "どや!", emoji: "🐧" },
   { text: "おりゃ!", emoji: "🐋" },
