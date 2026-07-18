@@ -53,8 +53,8 @@
   right: 20px;
   bottom: 58px;
   z-index: 2147483000;
-  padding: 7px 13px;
-  border-radius: 9px;
+  padding: 7px 16px;
+  border-radius: 999px;
   background: #f1efe9;
   color: #33322d;
   border: 1px solid #d9d5c7;
@@ -65,6 +65,7 @@
   transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .sg-toast-show {
