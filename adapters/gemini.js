@@ -25,9 +25,14 @@ window.SendGuard = window.SendGuard || {};
 
   const RETRY_SELECTORS = [
     'button[aria-label*="Regenerate" i]',
+    'button[aria-label*="Retry" i]',
     'button[aria-label*="再生成" i]',
     'button[aria-label*="Try again" i]',
-    'button[aria-label*="再試行" i]'
+    'button[aria-label*="再試行" i]',
+    'button[aria-label*="やり直" i]',
+    'button[mattooltip*="やり直" i]',
+    'button[data-tooltip*="やり直" i]',
+    'button[title*="やり直" i]'
   ];
 
   window.SendGuard.adapter = {

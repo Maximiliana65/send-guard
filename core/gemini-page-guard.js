@@ -16,9 +16,14 @@
   ].join(',');
   const RETRY_SELECTOR = [
     'button[aria-label*="Regenerate" i]',
+    'button[aria-label*="Retry" i]',
     'button[aria-label*="再生成" i]',
     'button[aria-label*="Try again" i]',
-    'button[aria-label*="再試行" i]'
+    'button[aria-label*="再試行" i]',
+    'button[aria-label*="やり直" i]',
+    'button[mattooltip*="やり直" i]',
+    'button[data-tooltip*="やり直" i]',
+    'button[title*="やり直" i]'
   ].join(',');
 
   function isUnlocked() {
@@ -98,6 +103,16 @@
       return;
     }
 
+    // Geminiのやり直しボタンは、クリックではなくキー操作の時点で動作を開始する
+    // ことがあるため、ロック中はボタンに対するEnter/Spaceも先に止める。
+    if ((event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') && isProtectedButton(event)) {
+      if (!isUnlocked()) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+      return;
+    }
+
     if (event.key !== 'Enter' || event.shiftKey) return;
     const composer = composerFromEvent(event);
     if (!composer) return;
@@ -113,6 +128,19 @@
     event.stopImmediatePropagation();
     insertLineBreak(composer);
   }, true);
+
+  function blockLockedPointerAction(event) {
+    if (!isProtectedButton(event)) return;
+    if (isUnlocked()) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+
+  // Geminiのやり直しはpointerdown/mousedownで始まる場合がある。clickだけでは
+  // 遅いため、ロック中に限って前段のイベントから止める。
+  window.addEventListener('pointerdown', blockLockedPointerAction, true);
+  window.addEventListener('mousedown', blockLockedPointerAction, true);
 
   window.addEventListener('click', (event) => {
     if (!isProtectedButton(event)) return;
