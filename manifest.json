@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_appName__",
   "description": "__MSG_appDescription__",
-  "version": "0.2.1",
+  "version": "0.2.4",
   "default_locale": "ja",
 
   "permissions": ["storage"],
@@ -14,6 +14,18 @@
   ],
 
   "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "js": ["core/chatgpt-page-guard.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["core/gemini-page-guard.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
     {
       "matches": ["https://claude.ai/*"],
       "js": [

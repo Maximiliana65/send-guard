@@ -31,6 +31,9 @@ window.SendGuard = window.SendGuard || {};
   ];
 
   window.SendGuard.adapter = {
+    // Enter は ChatGPT のページ本体と同じ実行コンテキストで先に止める。
+    // UI とロック状態は content-main.js 側で引き続き管理する。
+    usesMainWorldGuard: true,
     isComposerElement(el) {
       return matchesAny(el, COMPOSER_SELECTORS);
     },

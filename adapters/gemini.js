@@ -31,6 +31,8 @@ window.SendGuard = window.SendGuard || {};
   ];
 
   window.SendGuard.adapter = {
+    // Geminiは入力欄を動的に作り直すため、送信判定をMAIN worldの専用ガードで行う。
+    usesMainWorldGuard: true,
     isComposerElement(el) {
       return matchesAny(el, COMPOSER_SELECTORS);
     },

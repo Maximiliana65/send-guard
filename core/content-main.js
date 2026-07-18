@@ -17,6 +17,8 @@
   const SG = window.SendGuard;
   const lockGuard = SG.lockGuard;
   const adapter = SG.adapter;
+  const usesMainWorldGuard = adapter.usesMainWorldGuard === true;
+  const MAIN_WORLD_STATE_ATTRIBUTE = 'data-send-guard-unlocked';
 
   let badgeEl = null;
   let dotEl = null;
@@ -81,7 +83,40 @@
     });
   }
 
-  lockGuard.onChange(updateBadge);
+  function syncMainWorldState(unlocked) {
+    if (!usesMainWorldGuard) return;
+    if (unlocked) {
+      document.documentElement.setAttribute(MAIN_WORLD_STATE_ATTRIBUTE, 'true');
+    } else {
+      document.documentElement.removeAttribute(MAIN_WORLD_STATE_ATTRIBUTE);
+    }
+  }
+
+  function applyMainWorldState() {
+    if (!usesMainWorldGuard) return;
+    const unlocked = document.documentElement.getAttribute(MAIN_WORLD_STATE_ATTRIBUTE) === 'true';
+    if (unlocked && !lockGuard.isUnlocked()) {
+      lockGuard.unlockOnce();
+    } else if (!unlocked && lockGuard.isUnlocked()) {
+      lockGuard.consumeAndRelock();
+    }
+  }
+
+  lockGuard.onChange((unlocked) => {
+    updateBadge(unlocked);
+    syncMainWorldState(unlocked);
+  });
+
+  // ChatGPT / Gemini の MAIN world ガードから状態変更・許可済み送信を受け取る。
+  // CustomEvent の detail は world 間で扱いにくいため、状態は document 属性で共有する。
+  if (usesMainWorldGuard) {
+    syncMainWorldState(lockGuard.isUnlocked());
+    window.addEventListener('send-guard:state', applyMainWorldState);
+    window.addEventListener('send-guard:sent', () => {
+      applyMainWorldState();
+      maybeShowFunComment();
+    });
+  }
 
   // --- キー入力の監視 ---
   // window に付けることで、サイト側がdocumentレベルで同様の仕組みを
@@ -89,6 +124,8 @@
   window.addEventListener(
     'keydown',
     (event) => {
+      // MAIN worldガードを使うサイトは、そのサイトの専用ガードが処理する。
+      if (usesMainWorldGuard) return;
       // ショートカットでロック解除 (Ctrl+Shift+U)
       if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'u') {
         event.preventDefault();
@@ -128,6 +165,8 @@
   window.addEventListener(
     'click',
     (event) => {
+      // MAIN worldガードを使うサイトは、そのサイトの専用ガードが処理する。
+      if (usesMainWorldGuard) return;
       const isSend = adapter.isSendButton(event.target);
       const isRetry = adapter.isRetryButton(event.target);
       if (!isSend && !isRetry) return;
