@@ -10,15 +10,42 @@ window.SendGuard.funEngine = {
     const list = window.SendGuardComments || [];
     if (list.length === 0) return;
 
+    // season が指定されているコメントは、その期間の外では候補から完全に除外する
+    const available = list.filter((item) => this._isInSeason(item));
+    if (available.length === 0) return;
+
     // rare なコメントほど出現率を下げるための重み付け抽選
     const pool = [];
-    list.forEach((item) => {
+    available.forEach((item) => {
       const weight = item.rare ? 1 : 6;
       for (let i = 0; i < weight; i++) pool.push(item);
     });
 
     const picked = pool[Math.floor(Math.random() * pool.length)];
     this._showToast(picked);
+  },
+
+  // 今日の日付が、コメントの season(期間指定)に当てはまるか判定する
+  _isInSeason(item) {
+    if (!item.season) return true; // 季節限定でなければ常に対象
+
+    const { from, to } = item.season;
+    const today = this._todayKey();
+
+    if (from <= to) {
+      // 通常の期間(例: 10-25 〜 10-31)
+      return today >= from && today <= to;
+    }
+    // 年をまたぐ期間(例: 12-28 〜 01-03)
+    return today >= from || today <= to;
+  },
+
+  // 今日の日付を "MM-DD" 形式の文字列にする(例: "07-19")
+  _todayKey() {
+    const d = new Date();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${mm}-${dd}`;
   },
 
   _showToast(item) {
