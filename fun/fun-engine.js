@@ -1,42 +1,12 @@
 // fun/fun-engine.js
-// fun/comments.js のデータを使って、実際に画面に一言コメントを表示する役割。
-// 「何を表示するか(comments.js)」と「どう表示するか(このファイル)」を
+// fun/comments.ja.js, comments.en.js のデータを使って、実際に画面に一言コメントを
+// 表示する役割。「何を表示するか(comments.*.js)」と「どう表示するか(このファイル)」を
 // 分けているので、表示の演出だけ後から変えたい時もここだけ触ればいい。
 
 window.SendGuard = window.SendGuard || {};
 
 window.SendGuard.funEngine = {
   showRandomComment() {
-    const settingsStore = window.SendGuard.settingsStore;
-
-    settingsStore.increment('totalSentCount', (count) => {
-      const special = this._pickSpecialComment(count);
-      if (special) {
-        this._showToast(special);
-        return;
-      }
-      this._showNormalComment();
-    });
-  },
-
-  // 累計送信回数(count)と現在時刻から、特別な演出があれば返す。
-  // なければ null を返し、通常のランダムコメントに任せる。
-  // 優先順位: 初回 > 節目(10/50/100回目など) > 深夜 > (該当なし)
-  _pickSpecialComment(count) {
-    const specials = this._specialSet();
-    if (!specials) return null;
-
-    if (count === 1 && specials.first) return specials.first;
-    if (specials.milestones && specials.milestones[count]) return specials.milestones[count];
-
-    const hour = new Date().getHours();
-    if (hour >= 0 && hour < 4 && specials.lateNight) return specials.lateNight;
-
-    return null;
-  },
-
-  // 通常のランダムコメント(fun/comments.ja.js, comments.en.js)から1つ選ぶ
-  _showNormalComment() {
     const list = this._pickCommentsList();
     if (list.length === 0) return;
 
@@ -53,13 +23,6 @@ window.SendGuard.funEngine = {
 
     const picked = pool[Math.floor(Math.random() * pool.length)];
     this._showToast(picked);
-  },
-
-  // ブラウザの表示言語(日本語かどうか)に応じて、特別な演出の日本語版/英語版を選ぶ
-  _specialSet() {
-    const sets = window.SendGuardSpecialComments || {};
-    const lang = (chrome.i18n.getUILanguage() || 'ja').toLowerCase();
-    return (lang.startsWith('ja') ? sets.ja : sets.en) || sets.ja || sets.en || null;
   },
 
   // ブラウザの表示言語(日本語かどうか)に応じて、日本語版/英語版のどちらの

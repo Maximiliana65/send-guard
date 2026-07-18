@@ -7,8 +7,7 @@
 window.SendGuard = window.SendGuard || {};
 
 const SG_DEFAULT_SETTINGS = {
-  funEnabled: false,
-  totalSentCount: 0
+  funEnabled: false
 };
 
 window.SendGuard.settingsStore = {
@@ -35,21 +34,6 @@ window.SendGuard.settingsStore = {
   set(values, callback) {
     chrome.storage.sync.set(values, () => {
       if (callback) callback();
-    });
-  },
-
-  /**
-   * 指定したキーの値を1増やしてから、増えたあとの値を返す
-   * (「送信は何回目か」を数えるお楽しみ機能で使用)
-   * @param {string} key
-   * @param {(nextValue: number) => void} callback
-   */
-  increment(key, callback) {
-    chrome.storage.sync.get(SG_DEFAULT_SETTINGS, (result) => {
-      const next = (result[key] || 0) + 1;
-      chrome.storage.sync.set({ [key]: next }, () => {
-        if (callback) callback(next);
-      });
     });
   }
 };
