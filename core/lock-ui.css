@@ -72,3 +72,17 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 画面(ウィンドウ)幅が狭い時、サイト側の送信ボタンと重なりやすいため、
+   バッジとコメントを少し上にずらす。ChatGPT/Geminiを分割画面で使う際の対策。
+   将来的には送信ボタンの実際の位置を検出して自動調整することも検討したい
+   (ROADMAP参照)。 */
+@media (max-width: 1200px) {
+  .sg-badge {
+    bottom: 70px;
+  }
+
+  .sg-toast {
+    bottom: 108px;
+  }
+}
