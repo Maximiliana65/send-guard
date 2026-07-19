@@ -31,6 +31,8 @@ window.SendGuard = window.SendGuard || {};
   ];
 
   window.SendGuard.adapter = {
+    // CSS側でサイトごとに見た目を微調整するための識別名(core/lock-ui.css参照)
+    siteId: 'chatgpt',
     // Enter は ChatGPT のページ本体と同じ実行コンテキストで先に止める。
     // UI とロック状態は content-main.js 側で引き続き管理する。
     usesMainWorldGuard: true,

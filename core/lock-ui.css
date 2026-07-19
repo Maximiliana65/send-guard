@@ -79,10 +79,23 @@
    (ROADMAP参照)。 */
 @media (max-width: 1200px) {
   .sg-badge {
-    bottom: 70px;
+    bottom: 92px;
   }
 
   .sg-toast {
-    bottom: 108px;
+    bottom: 130px;
+  }
+}
+
+/* Geminiは入力欄の余白が少なく、上記の調整だけでは送信ボタンと重なることが
+   実機確認で分かったため、Geminiだけ狭い画面でさらに強めに上へずらす。
+   通常の(狭くない)画面幅では、他サイトと同じ右下の位置のまま。 */
+@media (max-width: 1200px) {
+  html[data-send-guard-site="gemini"] .sg-badge {
+    bottom: 130px;
+  }
+
+  html[data-send-guard-site="gemini"] .sg-toast {
+    bottom: 168px;
   }
 }

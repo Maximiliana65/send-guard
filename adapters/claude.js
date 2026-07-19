@@ -30,6 +30,8 @@ window.SendGuard = window.SendGuard || {};
   ];
 
   window.SendGuard.adapter = {
+    // CSS側でサイトごとに見た目を微調整するための識別名(core/lock-ui.css参照)
+    siteId: 'claude',
     isComposerElement(el) {
       return matchesAny(el, COMPOSER_SELECTORS);
     },

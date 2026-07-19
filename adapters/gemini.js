@@ -36,6 +36,8 @@ window.SendGuard = window.SendGuard || {};
   ];
 
   window.SendGuard.adapter = {
+    // CSS側でサイトごとに見た目を微調整するための識別名(core/lock-ui.css参照)
+    siteId: 'gemini',
     // Geminiは入力欄を動的に作り直すため、送信判定をMAIN worldの専用ガードで行う。
     usesMainWorldGuard: true,
     isComposerElement(el) {

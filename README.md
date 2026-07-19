@@ -65,4 +65,4 @@ git push origin main --tags
 
 ## ライセンス
 
-未定（公開時に検討）
+[MIT License](./LICENSE) — 改造・再配布・商用利用も自由です。著作権表示は残してください。

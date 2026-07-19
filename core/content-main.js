@@ -20,6 +20,12 @@
   const usesMainWorldGuard = adapter.usesMainWorldGuard === true;
   const MAIN_WORLD_STATE_ATTRIBUTE = 'data-send-guard-unlocked';
 
+  // CSS側(core/lock-ui.css)でサイトごとに見た目を微調整できるよう、
+  // <html>要素に識別名を持たせておく(例: 画面が狭い時のバッジ位置の調整)
+  if (adapter.siteId) {
+    document.documentElement.setAttribute('data-send-guard-site', adapter.siteId);
+  }
+
   let badgeEl = null;
   let dotEl = null;
   let labelEl = null;
