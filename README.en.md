@@ -18,8 +18,7 @@ A Chrome/Edge extension that prevents accidental sends in AI chats (Claude / Cha
 
 ## Status
 
-✅ Phases 1-3 complete (verified on Claude / ChatGPT / Gemini, on Chrome and Edge, in both regular and private/incognito windows)
-🚧 Phase 4 (release prep) in progress
+✅ Published — [live on GitHub](https://github.com/Maximiliana65/send-guard) (verified on Claude / ChatGPT / Gemini, on Chrome and Edge, in both regular and private/incognito windows)
 
 See [ROADMAP.md](./ROADMAP.md) for what's planned, [CHANGELOG.md](./CHANGELOG.md) for release history, [DEVLOG.md](./DEVLOG.md) for the development journal, and [docs/DESIGN.md](./docs/DESIGN.md) for the original design notes.
 
