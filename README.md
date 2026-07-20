@@ -6,7 +6,7 @@
 
 ![version](https://img.shields.io/badge/version-0.5.3-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
-🇯🇵 日本語 | English coming soon.
+[日本語](#) | [English](./README.en.md)
 
 AIチャット(Claude / ChatGPT / Gemini)で、うっかりEnterキーや送信・再試行ボタンを
 押してしまい、書きかけのメッセージを送ってしまう事故を防ぐためのChrome/Edge拡張機能です。
@@ -85,6 +85,13 @@ git push origin main --tags
 ```
 
 </details>
+
+## Limitations（制限事項）
+
+- この拡張機能は、誤送信を減らすための**補助ツール**です。すべての状況で誤送信を完全に防止することを保証するものではありません
+- 対応しているAIサービス（Claude / ChatGPT / Gemini）側の画面が更新されると、一時的に正しく動作しなくなる場合があります
+- 重要な内容を送信する前は、あらためて内容をご確認ください
+- 本ソフトウェアは[MITライセンス](./LICENSE)のもと、現状有姿（"AS IS"）で提供されます
 
 ## ライセンス
 
