@@ -6,7 +6,7 @@
 
 ![version](https://img.shields.io/badge/version-0.5.3-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
-[日本語](#) | [English](./README.en.md)
+**日本語** | [English](./README.en.md)
 
 AIチャット(Claude / ChatGPT / Gemini)で、うっかりEnterキーや送信・再試行ボタンを
 押してしまい、書きかけのメッセージを送ってしまう事故を防ぐためのChrome/Edge拡張機能です。
