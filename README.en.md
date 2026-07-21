@@ -24,7 +24,7 @@ See [ROADMAP.md](./ROADMAP.md) for what's planned, [CHANGELOG.md](./CHANGELOG.md
 
 ## What it does
 
-![How it works](./docs/images/how-it-works.svg)
+![How it works](./docs/images/how-it-works.en.svg)
 
 - **Enter always inserts a line break** — your message is never sent by accident
 - When you actually want to send, click the 🔒 badge in the corner (or press `Ctrl+Shift+U`) to unlock
