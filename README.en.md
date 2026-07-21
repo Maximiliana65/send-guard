@@ -82,6 +82,18 @@ git push origin main --tags
 
 </details>
 
+## Supported / Not supported
+
+**Supported**
+- Claude (Web / claude.ai)
+- ChatGPT (Web / chatgpt.com)
+- Gemini (Web / the main gemini.google.com page)
+
+**Not currently supported**
+- Chrome's built-in "Gemini side panel" feature — this is a native Chrome browser
+  feature rather than a regular web page, so it works differently under the hood
+  and isn't supported at this time.
+
 ## Limitations
 
 - This extension is an **assistive tool** to help reduce accidental sends. It cannot guarantee prevention in every situation.

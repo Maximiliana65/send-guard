@@ -85,6 +85,17 @@ git push origin main --tags
 
 </details>
 
+## 対応範囲
+
+**対応**
+- Claude (Web / claude.ai)
+- ChatGPT (Web / chatgpt.com)
+- Gemini (Web / gemini.google.com のメイン画面)
+
+**現在非対応**
+- Chromeの「Geminiサイドパネル」機能（Chromeに内蔵されたブラウザ機能で、通常のWebページとは
+  仕組みが異なるため、現時点では対応していません）
+
 ## Limitations（制限事項）
 
 - この拡張機能は、誤送信を減らすための**補助ツール**です。すべての状況で誤送信を完全に防止することを保証するものではありません
